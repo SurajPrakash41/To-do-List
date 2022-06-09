@@ -1,0 +1,36 @@
+<%- include("header") -%>
+
+  <div class="box" id="heading">
+    <!-- //list title -->
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+    <%# //for each method just like for loop %>
+    <% newListItems.forEach(function(item){ %>
+
+      <!-- to delete -->
+      <form class="" action="/delete" method="post">
+        <div class="item">
+
+          <!-- //submit button will make it weired so onchange attribute can be used -->
+          <input type="checkbox"name="checkbox" value=<%=item._id %> onchange="this.form.submit()">
+          <!-- //just the name field -->
+          <p> <%=  item.name  %> </p>
+
+
+        </div>
+        <!-- hidden to get the list title -->
+        <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+      </form>
+  <%  }) %>
+
+<!-- To add new items by posting to home route -->
+
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list" value="<%= listTitle %>">+</button>
+      </form>
+  </div>
+
+<%- include("footer") -%>
